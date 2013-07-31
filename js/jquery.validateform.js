@@ -207,7 +207,7 @@ $.extend($.validateForm, {
 							   return value.match(new RegExp(param));
 							}, $.validateForm.messages.regexMatch);
 							
-							return validateForm.tringRegex(content);
+							return validateForm.trimRegex(content);
 						}
 					}
 
@@ -329,7 +329,7 @@ $.extend($.validateForm, {
 			return $.trim(content.split(type + "[")[1].split("]|")[0].split("]")[0]);
 		},
 		
-		tringRegex : function(content) {
+		trimRegex : function(content) {
 			var regex = /(.*)regexmatch\['(.*)'\](.*)/;
 			return content.replace(regex, "$2");
 		}
