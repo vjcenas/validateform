@@ -1,5 +1,5 @@
 /**
- *  Form Validator Plugin 1.0.2
+ *  Form Validator Plugin 1.0.1
  *
  *	Description: Validate form via HTML attribute "validate"
  *
@@ -86,7 +86,10 @@ $.extend($.validateForm, {
 		submitHandler : function(){
 			return false;
 		},
-		errorElement : "span"
+		errorElement : "span",
+		invalidHandler : function(form, validator) {
+			common.alertMessage('error', 'Please fill up the required fields.', 5000);
+		}
 	},
 	
 	messages : {
@@ -101,8 +104,10 @@ $.extend($.validateForm, {
 		init : function() {
 			var validateForm = this;
 		
-			if (this.options != undefined && typeof this.options == "object") {
-				$.extend($.validateForm.defaults, this.options);
+			if (this.options != undefined && typeof options == "object") {
+				$.each(options, function(key, val) {	
+					$.validateForm.defaults[key] = val;
+				});
 			}
 
 			$(this.form).validate($.validateForm.defaults);
